@@ -1,0 +1,77 @@
+.headerconteiner{
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    column-gap: 50px;   
+    border-bottom-style:ridge; 
+
+}
+.supportnumber{
+display: flex;
+column-gap: 10px;
+font-family:Verdana, Geneva, Tahoma, sans-serif  ;
+font-size: 10px;
+color: black;
+
+    }
+    .supportmail{
+        display: flex;
+        column-gap: 10px;
+        font-family:Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 10px;
+        color: black;
+            }
+            .location{
+                display: flex;
+                column-gap: 10px;
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                font-size: 10px;
+                color: black;
+                    }  
+                    .secondheader{
+                        display: flex;
+                        justify-content: space-between;
+                        background-color: yellowgreen;
+                        column-gap: 200px;
+                    }  
+                    .search-bar {
+                        display: flex;
+                        align-items: center;
+                        width: 400px;
+                        margin: 20px auto; 
+                        background-color: #f0f0f0;
+                        border: 1px solid #ccc;
+                        border-radius: 5px;
+                        overflow: hidden;
+                      }
+                      
+                     
+                      .search-input {
+                        flex-grow: 1;
+                        border: none;
+                        padding: 10px;
+                        font-size: 16px;
+                        outline: none;
+                      }
+                      
+                      
+                      .search-button {
+                        background-color: black;
+                        border: none;
+                        padding: 10px;
+                        cursor: pointer;
+                      }
+                      
+                      .search-button:hover {
+                        background-color: #333; 
+                      }
+                      
+                      
+                      .search-icon {
+                        height: 16px;
+                        
+                      }
+                      .logo{
+                        background-color: transparent;
+                      }
+                      
