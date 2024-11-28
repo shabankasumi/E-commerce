@@ -5,22 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-commerce</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
     <section class="header">
+        <img class="logo" src="images/logoblack.png" alt="Logo">
+        
         <nav class="nav">
-            <div class="nav-links">
+            <div class="nav-links" id="navlinks">
+                 <i class="fa-solid fa-x" onclick="hidemenu()"></i>
+                
                 <ul>
-                    <li><a href="">Home</a></li>
+                    <li><a href="index.html"></i>Home</a></li>
                     <li><a href="">Products</a></li>
                     <li><a href="">About Us</a></li>
                     <li><a href="">Login</a></li>
                 </ul>
+                
             </div>
-            <div class="logo">
-                <img src="images/logoblack.png" alt="Logo">
-            </div>
-        </nav>
+            <i class="fa-solid fa-bars hamburger" onclick="showmenu()"></i>
+            
+            </nav>
         <div class="text-box">
             <h1>World's bigest brands store</h1>
             <p>In our store you can find clothing's products of bigest brands for a better price </p>
@@ -32,21 +37,62 @@
         <p>look at our new collection</p>
         <div class="row">
             
-            <div class="products-col">
-                <h3>Winter is here</h3>
+            <div class="photo">
+                <h3>Winter Jacket</h3>
                 <img src="images/winter.jpg" alt="">
                 <p>120€</p>
             </div>
-            <div class="products-col">
+            <div class="photo">
                 <h3>For Kids</h3>
                 <img src="images/kid1.jpg" alt="">
                 <p>120€</p>
             </div>
-            <div class="products-col">
+            <div class="photo">
                 <h3>Red dress</h3>
                 <img src="images/reddres1.jpg" alt="">
-                <p>120€</p>
+                <p>120€</p>  
             </div>
         </div>
     </section>
+    <footer>
+        <div class="f">
+            <h2>About our companny</h2>
+            <h2>Our Links</h2>
+            <div class="ff">
+                <a href=""><img src="images/facebook.png" alt="" width="32px" height="32px"></a>
+                <a href=""><img src="images/twitter.png" alt="" width="32px" height="32px"></a>
+                <a href=""><img src="images/instagram.png" alt="" width="32px" height="32px"></a>
+                <a href=""><img src="images/pinterest.png" alt="" width="32px" height="32px"></a>
+            </div>
+        </div>
+        <div class="footermain">
+                <div class="footerleft">
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry...</p>
+                </div>
+                <div class="footercenter">
+                    <p>Advertise</p>
+                    <p>Support</p>
+                    <p>Our Company</p>
+                    <p>Contact</p>
+                </div>
+                <div class="footerright">
+                    <p>Terms of use</p>
+                    <p>Privacy Policy</p>
+                </div>
+            </div>
+            <div class="fundi">
+                <p>Copyright 2020 our Company. All rights reserved.</p>
+                <p>Designed by sjhdjsdjhd</p>
+            </div>
+        </footer>
+    <script>
+        var navlinks = document.getElementById("navlinks");
+        function showmenu(){
+            navlinks.style.right="0";
+        }
+        function hidemenu(){
+            navlinks.style.right="-200px"
+        }
+    </script>
+</body>
 </html>
