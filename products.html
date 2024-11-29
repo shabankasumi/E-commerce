@@ -4,8 +4,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Products</title>
+    <link rel="stylesheet" href="products.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
+
 <body>
-    <p>produktet</p>
+    <section class="header">
+        <a href="index.html"> <img class="logo"  src="images/logoblack.png" alt="Logo" ></a>
+        
+        <nav class="nav">
+            <div class="nav-links" id="navlinks">
+                 <i class="fa-solid fa-x" onclick="hidemenu()"></i>
+                
+                <ul>
+                    <li><a href="index.html"></i>Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="aboutus.html">About Us</a></li>
+                    <li><a href="login.html">Login</a></li>
+                </ul>
+              
+                
+            </div>
+            <i class="fa-solid fa-bars hamburger" onclick="showmenu()"></i>
+        
+                </form>
+            </div>
+            
+            </nav>
+    </section>
+    <div class="row">
+            
+        <div class="photo">
+            <img src="images/winter.jpg" alt="">
+            <h3>Winter Jacket</h3>
+            <p>120€</p>
+            <button class="addtocart">Add to cart</button>
+        </div>
+        <div class="photo">
+            <img src="images/kid1.jpg" alt="">
+            <h3>For Kids</h3><p>120€</p>
+            <button class="addtocart">Add to cart</button>
+        </div>
+        <div class="photo">
+            <img src="images/reddres1.jpg" alt="">
+            <h3>Red dress</h3>
+            <p>120€</p>  
+            <button class="addtocart">Add to cart</button>
+        </div>
+        <div class="photo">
+            <img src="images/winter.jpg" alt="">
+            <h3>Winter Jacket</h3>
+            <p>120€</p>
+            <button class="addtocart">Add to cart</button>
+        </div>
+    </div>
+    <div class="carticon">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span>0</span>
+    </div>
+    <div class="carttab">
+        <h1>Shoping cart</h1>
+        <div class="listcart">
+
+        </div>
+        <div class="btn">
+            <button class="close">CLOSE</button>
+            <button class="checkout">CHECK OUT</button>
+        </div>
+    </div>
+            <script>
+                var navlinks = document.getElementById("navlinks");
+                function showmenu(){
+                    navlinks.style.right="0";
+                }
+                function hidemenu(){
+                    navlinks.style.right="-200px"
+                }
+            </script>
 </body>
 </html>
