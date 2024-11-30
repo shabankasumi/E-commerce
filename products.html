@@ -59,28 +59,38 @@
             <button class="addtocart">Add to cart</button>
         </div>
     </div>
+    <div class="showcart">
     <div class="carticon">
-        <i class="fa-solid fa-cart-shopping"></i>
+        <i class="fa-solid fa-cart-shopping" onclick="toggleCart()" ></i>
         <span>0</span>
     </div>
-    <div class="carttab">
+    <div class="carttab" id="cart-tab">
         <h1>Shoping cart</h1>
         <div class="listcart">
-
+            
         </div>
         <div class="btn">
-            <button class="close">CLOSE</button>
+            <button class="close" onclick="toggleCart()">CLOSE</button>
             <button class="checkout">CHECK OUT</button>
         </div>
     </div>
+</div>
             <script>
                 var navlinks = document.getElementById("navlinks");
                 function showmenu(){
                     navlinks.style.right="0";
                 }
                 function hidemenu(){
-                    navlinks.style.right="-200px"
+                    navlinks.style.right="-200px";
                 }
+              
+            </script>
+            <script>
+                function toggleCart() {
+  const cartTab = document.getElementById('cart-tab');
+  cartTab.classList.toggle('open'); 
+}
+               
             </script>
 </body>
 </html>
