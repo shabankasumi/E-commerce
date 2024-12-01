@@ -6,39 +6,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us</title>
     <link rel="stylesheet" href="aboutus.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 
 <body>
-    <div class="container">
-        <header>
-            <h1>About Us</h1>
-            <p>Your journey with us begins here.</p>
-        </header>
+    <section class="header">
+        
+        <nav class="nav">
+            <div>
 
-        <section class="content">
-            <p>
-                Welcome to *Eshop*, a place where innovation meets creativity. Our mission is to empower our customers
-                by providing solutions that inspire, delight, and enable their ambitions. We believe in a world where
-                possibilities are endless, and every challenge is an opportunity to innovate.
-            </p>
+                <img class="logo"  src="images/logoblack.png" alt="Logo" >
+            </div>
+            <div class="nav-links" id="navlinks">
+                <i class="fa-solid fa-x" onclick="hidemenu()"></i>
+                
+                <ul>
+                    <li><a href="index.html"></i>Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="about-us.html">About Us</a></li>
+                    <li><a href="login.html">Login</a></li>
+                </ul>
+              
+                
+            </div>
+            
+            <i class="fa-solid fa-bars hamburger" onclick="showmenu()"></i>
+            
+        </nav>
+    </section>
+    <div class="container1">
+        <div class="container">
+                <h1>About Us</h1>
+                <p>Your journey with us begins here.</p>
 
-            <p>
-                Our journey began with a simple idea: to create a platform that not only offers exceptional products but
-                also fosters a community of passionate individuals. Whether you’re looking for inspiration or seeking
-                guidance, we are here to support you every step of the way.
-            </p>
+            <section class="content">
+                <p>
+                    Welcome to *Eshop*, a place where innovation meets creativity. Our mission is to empower our customers
+                    by providing solutions that inspire, delight, and enable their ambitions. We believe in a world where
+                    possibilities are endless, and every challenge is an opportunity to innovate.
+                </p>
 
-            <p>
-                At Eshop, we value integrity, creativity, and customer satisfaction above all. Join us as we continue to
-                innovate and redefine the boundaries of what’s possible. Together, we can build a brighter future.
-            </p>
+                <p>
+                    Our journey began with a simple idea: to create a platform that not only offers exceptional products but
+                    also fosters a community of passionate individuals. Whether you’re looking for inspiration or seeking
+                    guidance, we are here to support you every step of the way.
+                </p>
 
-        </section>
+                <p>
+                    At Eshop, we value integrity, creativity, and customer satisfaction above all. Join us as we continue to
+                    innovate and redefine the boundaries of what’s possible. Together, we can build a brighter future.
+                </p>
 
-        <footer>
-            <p>Contact us at <a href="mailto:support@eshop.com">support@eshop.com</a></p>
-        </footer>
+            </section>
+
+            <footer>
+                <p>Contact us at <a href="mailto:support@eshop.com">support@eshop.com</a></p>
+            </footer>
+        </div>
     </div>
 </body>
-
+<script>
+    var navlinks = document.getElementById("navlinks");
+    function showmenu(){
+        navlinks.style.right="0";
+    }
+    function hidemenu(){
+        navlinks.style.right="-200px";
+    }
+  
+</script>
 </html>

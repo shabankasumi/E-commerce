@@ -10,12 +10,118 @@ body {
     color: #333;
     background: linear-gradient(135deg, #f06, #a9c1f0);
     min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
 }
 
+.header{
+    height: auto;
+    width: 100%;
+    background-position:center;
+    background-size:cover;
+    position:relative;
+    background-origin:padding-box;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+
+}
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items:end;
+}
+
+.nav-links {
+    flex: 1;
+    text-align:right ;
+}
+
+
+
+.nav-links ul li {
+    display:inline-block;
+    list-style: none;
+    padding: 8px 30px;
+    position: relative;
+    
+}
+
+.nav-links ul li a {
+    color: black;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.nav-links ul li::after {
+    content: '';
+    width: 0%;
+    height: 2px;
+    background: #f44336;
+    display: block;
+    margin: auto;
+    transition: 0.5s;
+}
+
+.nav-links ul li:hover::after {
+    width: 100%;
+}
+
+.logo {
+    position: absolute;
+    top: -17px;
+    left: 10px;
+    align-items: center;
+    width: 100px;
+}
+
+.logo img {
+    display: flex;
+    width: 100px; 
+    height: 100px; 
+    object-fit: contain; 
+    justify-content: flex-start;
+}
+nav .fa-solid{
+    display: none;
+}
+.hamburger{
+    display: none;
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    color: black;
+    font-size: 22px;
+    cursor: pointer;
+    z-index: 1;
+}
+@media(max-width: 700px) {
+    .hamburger{
+        display: block;
+    }
+    .text-box h1{
+        font-size: 20px;
+    }
+    .nav-links ul li{
+        display: block;
+        text-align: left;
+    }
+    .nav-links{
+        position: absolute;
+        background:white;
+        box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+        height: 30vh;
+        width: 200px;
+        top: 0;
+        right: -200px;
+        text-align: left;
+        z-index: 2;
+        border-radius: 9px;
+    }
+    nav .fa-solid{
+        display:block;
+        color: rgb(19, 10, 10);
+        margin: 10px;
+        font-size: 22px;
+        cursor: pointer;
+    }
+}
 
 .container {
     background-color: rgba(255, 255, 255, 0.8);
@@ -23,9 +129,14 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px 40px;
     max-width: 600px;
+    text-align: center;
 }
-
-/* Header styles */
+.container1{
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 header h1 {
     font-size: 2.5rem;
     margin-bottom: 10px;
