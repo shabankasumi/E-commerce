@@ -15,7 +15,7 @@
         
         <nav class="nav">
             <div class="nav-links" id="navlinks">
-                 <i class="fa-solid fa-x" onclick="hidemenu()"></i>
+                 <i class="fa-solid fa-x" onclick="togglemenu()"></i>
                 
                 <ul>
                     <li><a href="index.html"></i>Home</a></li>
@@ -27,7 +27,7 @@
                 
             </div>
             
-            <i class="fa-solid fa-bars hamburger" onclick="showmenu()"></i>
+            <i class="fa-solid fa-bars hamburger" onclick="togglemenu()"></i>
         
                 </form>
             </div>
@@ -87,6 +87,7 @@
         </div>
     </div>
 </div>
+
             <script>
                 var navlinks = document.getElementById("navlinks");
                 function showmenu(){
@@ -94,6 +95,10 @@
                 }
                 function hidemenu(){
                     navlinks.style.right="-200px";
+                }
+                function togglemenu(){
+                    const navlinks=document.getElementById('navlinks');
+                    navlinks.classList.toggle('open');
                 }
               
             </script>

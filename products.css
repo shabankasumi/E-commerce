@@ -100,16 +100,27 @@ nav .fa-solid{
         text-align: left;
     }
     .nav-links{
-        position: absolute;
-        background:white;
+        position:fixed;
+        background-color:white;
         box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
         height: 30vh;
         width: 200px;
         top: 0;
-        right: -200px;
+        inset: 0 0 0 auto;
         text-align: left;
-        z-index: 2;
+        z-index: 1002;
         border-radius: 9px;
+        transform:translateX(100%) ;
+        transition: transform 0.3s ease-in-out ;
+       
+    }
+    .hamburger.hiden{
+        opacity: 0;
+        pointer-events: none;
+        cursor:none;
+    }
+    .nav-links.open{
+        transform: translateX(0);
     }
     nav .fa-solid{
         display:block;
