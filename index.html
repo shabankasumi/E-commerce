@@ -39,22 +39,15 @@
     <section class="newproducts">
         <H1>New arrivals</H1>
         <p>look at our new collection</p>
-        <div class="row">
-            
-            <div class="photo">
-                <h3>Winter Jacket</h3>
-                <img src="images/winter.jpg" alt="">
-                <p>120€</p>
+        <div class="slider">
+            <div class="slider-track">
+                <div class="slide"><img src="images\reddres1.jpg" alt="Photo 1"></div>
+                <div class="slide"><img src="images/all-black-suits.png" alt="Photo 2"></div>
+                <div class="slide"><img src="" alt="Photo 3"></div>
             </div>
-            <div class="photo">
-                <h3>For Kids</h3>
-                <img src="images/kid1.jpg" alt="">
-                <p>120€</p>
-            </div>
-            <div class="photo">
-                <h3>Red dress</h3>
-                <img src="images/reddres1.jpg" alt="">
-                <p>120€</p>  
+            <div class="slider-buttons">
+                <button class="slider-button" id="prev">&#9664;</button>
+                <button class="slider-button" id="next">&#9654;</button>
             </div>
         </div>
     </section>
@@ -97,6 +90,27 @@
         function hidemenu(){
             navlinks.style.right="-200px"
         }
+        const sliderTrack = document.querySelector('.slider-track');
+    const slides = document.querySelectorAll('.slide');
+    const prevButton = document.getElementById('prev');
+    const nextButton = document.getElementById('next');
+    
+    let currentIndex = 0;
+
+    function updateSliderPosition() {
+        const offset = -currentIndex * 100;
+        sliderTrack.style.transform = `translateX(${offset}%)`;
+    }
+
+    prevButton.addEventListener('click', () => {
+        currentIndex = (currentIndex === 0) ? slides.length - 1 : currentIndex - 1;
+        updateSliderPosition();
+    });
+
+    nextButton.addEventListener('click', () => {
+        currentIndex = (currentIndex === slides.length - 1) ? 0 : currentIndex + 1;
+        updateSliderPosition();
+    });
     </script>
 </body>
 </html>
