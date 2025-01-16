@@ -1,0 +1,106 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+.text-center{
+    text-align: center;
+}
+
+.clearfix{
+    float: none;
+    clear: both;
+}
+
+.tbl-full{
+    width: 100%;
+}
+.tbl-30{
+    width: 30%;
+}
+
+table tr th{
+    border-bottom: 1px solid #ccc;
+    padding: 1%;
+    text-align: left;
+}
+
+table tr td{
+    padding: 1%;
+}
+
+.btn-primary{
+    background-color: #4CAF50;
+    padding: 1%;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+.btn-primary:hover{
+    background-color: #45a049;
+}
+
+.btn-secondary{
+    background-color: #008CBA;
+    padding: 1%;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+.btn-secondary:hover{
+    background-color: #0073aa;
+}
+
+.btn-danger{
+    background-color: #f44336;
+    padding: 1%;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+.btn-danger:hover{
+    background-color: #d32f2f;
+}
+
+.success{
+    color: #4CAF50;
+}
+.error{
+    color: #f44336;
+}
+
+
+.menu{
+    border-bottom: 1px solid #ccc;
+}
+.menu ul{
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+}
+.menu ul li{
+    display: inline;
+    padding: 1%;
+}
+.menu ul li a{
+    text-decoration: none;
+    font-weight: bold;
+    color: #0073aa;
+}
+.menu ul li a:hover{
+    color: #004466;
+}
+
+.main-content{
+    background-color: #f8f9fa;
+    padding: 3% 0;
+}
+
+.col-4{
+    width: 23%;
+    background-color: #ffffff;
+    margin: 1%;
+    padding: 2%;
+    float: left;
+}
