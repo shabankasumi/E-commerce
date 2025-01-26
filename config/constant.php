@@ -9,6 +9,23 @@
     define('DB_PASSWORD', '');
     define('DB_NAME', 'E-commerce');
 
-    $conn = mysqli_connect(LOCALHOST, DB_USERNAME, DB_PASSWORD) or die(mysqli_error());
-    $db_select = mysqli_select_db($conn, DB_NAME) or die(mysqli_error());
+    class Database {
+        private $conn;
+
+        public function __construct() {
+            $this->conn = $this->connect();
+        }
+
+        private function connect() {
+            $conn = mysqli_connect(LOCALHOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
+            if (!$conn) {
+                die("Connection failed: " . mysqli_connect_error());
+            }
+            return $conn;
+        }
+
+        public function getConnection() {
+            return $this->conn;
+        }
+    }
 ?>

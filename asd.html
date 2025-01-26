@@ -9,23 +9,23 @@
 <body>
     <div class="wrapper">
         <h1>Sign up</h1>
-        <form id="signup-form" onsubmit="return validateForm('signup-form')">
+        <form id="signup-form" method="POST" action="register.php" onsubmit="return validateForm('signup-form')">
             <div class="input-box">
-                <input name="username" type="text" style="padding-left: 10px;" placeholder="Username">
-                <span class="error" style="color: red; font-size: 14px;"></span>
+                <input name="username" type="text" style="padding-left: 10px;" placeholder="Username" value="<?php echo isset($username) ? $username : ''; ?>" required>
+                <span class="error" style="color: red; font-size: 14px;"><?php echo isset($errors['username']) ? $errors['username'] : ''; ?></span>
             </div>
             <div class="input-box">
-                <input name="email" type="email" style="padding-left: 10px;" placeholder="Email">
-                <span class="error" style="color: red; font-size: 14px;"></span>
+                <input name="email" type="email" style="padding-left: 10px;" placeholder="Email" value="<?php echo isset($email) ? $email : ''; ?>" required>
+                <span class="error" style="color: red; font-size: 14px;"><?php echo isset($errors['email']) ? $errors['email'] : ''; ?></span>
             </div>
             <div class="input-box">
-                <input name="password" type="password" style="padding-left: 10px;" placeholder="Password">
-                <span class="error" style="color: red; font-size: 14px;"></span>
+                <input name="password" type="password" style="padding-left: 10px;" placeholder="Password" required>
+                <span class="error" style="color: red; font-size: 14px;"><?php echo isset($errors['password']) ? $errors['password'] : ''; ?></span>
             </div>
             <div class="input-box">
-                <input name="confirmPassword" type="password" style="padding-left: 10px;" placeholder="Confirm Password">
-                <span class="error" style="color: red; font-size: 14px;"></span>
-            </div>
+                <input name="confirmPassword" type="password" style="padding-left: 10px;" placeholder="Confirm Password" required>
+                <span class="error" style="color: red; font-size: 14px;"><?php echo isset($errors['confirmPassword']) ? $errors['confirmPassword'] : ''; ?></span>
+            </div>            
             <button type="submit" class="btn">Sign up</button>
         </form>
         <div class="register-link">
