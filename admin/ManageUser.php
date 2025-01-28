@@ -10,7 +10,6 @@ class ManageUser {
         $this->conn = $db->getConnection(); 
     }
 
-    // Fetch all users
     public function getAllUsers() {
         $query = "SELECT * FROM {$this->table}";
         $stmt = $this->conn->prepare($query);
@@ -21,13 +20,12 @@ class ManageUser {
     public function getUserById($id) {
         $query = "SELECT * FROM {$this->table} WHERE id = ?";
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("i", $id); // 'i' indicates that ID is an integer
+        $stmt->bind_param("i", $id); 
         $stmt->execute();
         $result = $stmt->get_result();
-        return $result->fetch_assoc(); // Fetch the result as an associative array
+        return $result->fetch_assoc(); 
     }
 
-    // Add a new user
     public function addUser($username, $email, $password, $role = 'user') {
         $query = "INSERT INTO {$this->table} (username, email, password, role) VALUES (?, ?, ?, ?)";
     
@@ -42,19 +40,17 @@ class ManageUser {
         }
     }
 
-    // Method to update a user's details
     public function updateUser($id, $username, $email, $password) {
         $query = "UPDATE {$this->table} SET username = ?, email = ?, password = ? WHERE id = ?";
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("sssi", $username, $email, $password, $id); // 's' for strings and 'i' for integer
-        return $stmt->execute(); // Return true if successful, false if failed
+        $stmt->bind_param("sssi", $username, $email, $password, $id); 
+        return $stmt->execute(); 
     }
-    // Delete user
     public function deleteUser($id) {
         $query = "DELETE FROM {$this->table} WHERE id = ?";
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("i", $id); // 'i' indicates that ID is an integer
-        return $stmt->execute(); // Return true if successful, false if failed
+        $stmt->bind_param("i", $id); 
+        return $stmt->execute(); 
     }
 
     public function countUsers() {

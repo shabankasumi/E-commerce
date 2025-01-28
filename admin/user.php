@@ -11,7 +11,7 @@ $users = $userObj->getAllUsers();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Users</title>
-    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="css/admin.css">
 </head>
 <body>
     <div class="container">
@@ -35,7 +35,7 @@ $users = $userObj->getAllUsers();
                         <td><?= $user['id'] ?></td>
                         <td><?= htmlspecialchars($user['username']) ?></td>
                         <td><?= htmlspecialchars($user['email']) ?></td>
-                        <td>********</td>
+                        <td><?php echo str_repeat('*', strlen($user['password'])); ?></td>
                         <td>
                             <a href="edit-users.php?id=<?= $user['id'] ?>" class="btn-edit">Edit</a>
                             <a href="delete-users.php?id=<?= $user['id'] ?>" class="btn-delete" onclick="return confirm('Are you sure?')">Delete</a>

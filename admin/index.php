@@ -1,11 +1,14 @@
 <?php include("partials/header.php");
 require_once 'ManageUser.php';
-
+require_once'ManageOrder.php';
+$orderObj=new ManageOrder();
+$totalOrders= $orderObj-> countOrders();
 // Create an instance of the ManageUser class
 $userObj = new ManageUser(); 
 
 // Get total users count
 $totalUsers = $userObj->countUsers();
+
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +17,7 @@ $totalUsers = $userObj->countUsers();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="css/admin.css">
 </head>
 <body>
     
@@ -35,13 +38,13 @@ $totalUsers = $userObj->countUsers();
             <div class="section">
                 <h2>Products</h2>
                 <h1><b>72</b></h1>
-                <a href="product.php" class="btn">View Products</a>
+                <a href="adminproduct.php" class="btn">View Products</a>
             </div>
 
            
             <div class="section">
                 <h2>Orders</h2>
-                <h1><b>72</b></h1>
+                <h1><b><?= $totalOrders ?></b></h1>
                 <a href="orders.php" class="btn">View Orders</a>
             </div>
 

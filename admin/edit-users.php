@@ -1,35 +1,27 @@
 <?php
 require_once 'ManageUser.php';
 
-// Check if the user ID is provided via GET request
 if (isset($_GET['id'])) {
     $user_id = $_GET['id'];
     $userObj = new ManageUser();
 
-    // Fetch the user details by ID
     $userDetails = $userObj->getUserById($user_id);
 
-    // If user not found, redirect to manage users page
     if (!$userDetails) {
         header("Location: user.php");
         exit;
     }
 
-    // Handle form submission to update user details
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $username = $_POST['username'];
         $email = $_POST['email'];
         $password = $_POST['password'];
 
-        // Hash password if updated
         if (!empty($password)) {
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
         } else {
-            // If password is empty, keep the old password
             $hashed_password = $userDetails['password'];
         }
-
-        // Update the user in the database
         if ($userObj->updateUser($user_id, $username, $email, $hashed_password)) {
             $success_message = "User updated successfully!";
         } else {
@@ -56,7 +48,6 @@ if (isset($_GET['id'])) {
     <div class="dashboard">
         <h1>Edit User</h1>
 
-        <!-- Display success or error message -->
         <?php if (isset($success_message)): ?>
             <div class="success"><?php echo $success_message; ?></div>
         <?php endif; ?>
@@ -65,7 +56,6 @@ if (isset($_GET['id'])) {
             <div class="error"><?php echo $error_message; ?></div>
         <?php endif; ?>
 
-        <!-- User Edit Form -->
         <form action="edit-users.php?id=<?php echo $user_id; ?>" method="POST">
             <label for="username">Username</label>
             <input type="text" name="username" id="username" value="<?php echo $userDetails['username']; ?>" required>

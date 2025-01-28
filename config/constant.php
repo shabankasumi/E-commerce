@@ -8,6 +8,7 @@
     define('DB_USERNAME', 'root');
     define('DB_PASSWORD', '');
     define('DB_NAME', 'E-commerce');
+    
 
     class Database {
         private $conn;
