@@ -18,10 +18,10 @@
                  <i class="fa-solid fa-x" onclick="togglemenu()"></i>
                 
                 <ul>
-                    <li><a href="index.html"></i>Home</a></li>
-                    <li><a href="products.html">Products</a></li>
+                    <li><a href="index.php"></i>Home</a></li>
+                    <li><a href="products.php">Products</a></li>
                     <li><a href="about-us.html">About Us</a></li>
-                    <li><a href="login.html">Login</a></li>
+                    <li><a href="login.php"><i class="fa-regular fa-user"></i></a></li>
                 </ul>
               
                 
