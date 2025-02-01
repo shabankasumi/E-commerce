@@ -34,31 +34,21 @@
             
             </nav>
     </section>
-    <div class="row">
+    <div class="row"> 
+        <?php 
+        include('admin/get_products.php');
+        ?>
+         <?php 
+        while($row= $products->fetch_assoc()){
+        ?>
             
         <div class="photo">
-            <img src="images/winter.jpg" alt="">
-            <h3>Winter Jacket</h3>
-            <p>120€</p> 
+            <img src="images/<?php echo['image'];?>" alt="">
+            <h3><?php echo $row['name']; ?></h3>
+            <p>$ <?php echo $row['price'] ?></p> 
             <button class="addtocart">Add to cart</button>
         </div>
-        <div class="photo">
-            <img src="images/kid1.jpg" alt="">
-            <h3>For Kids</h3><p>120€</p>
-            <button class="addtocart">Add to cart</button>
-        </div>
-        <div class="photo">
-            <img src="images/reddres1.jpg" alt="">
-            <h3>Red dress</h3>
-            <p>120€</p>  
-            <button class="addtocart">Add to cart</button>
-        </div>
-        <div class="photo">
-            <img src="images/winter.jpg" alt="">
-            <h3>Winter Jacket</h3>
-            <p>120€</p>
-            <button class="addtocart">Add to cart</button>
-        </div>
+       <?php   } ?>
     </div>
     <div class="showcart">
     <div class="carticon">
