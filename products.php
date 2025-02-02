@@ -101,10 +101,7 @@ if (isset($_POST['remove_item'])) {
                         <li><a href="login.php"><i class="fa-regular fa-user"></i> Login</a></li>
                     <?php endif; ?>
 
-                    <!-- Conditionally show the Dashboard link for Admin users -->
-                    <?php if ($isLoggedIn && $userRole == 'admin'): ?>
-                        <li><a href="./admin/index.php">Dashboard</a></li>
-                    <?php endif; ?>
+                   
                 </ul>
             </div>
             <i class="fa-solid fa-bars hamburger" onclick="showmenu()"></i>
@@ -123,10 +120,10 @@ if (isset($_POST['remove_item'])) {
 
                 <!-- Add to Cart Form -->
                 <form method="POST">
-                    <input type="hidden" name="product_id" value="<?php echo $row['id']; ?>">
-                    <input type="number" name="quantity" value="1" min="1">
-                    <button type="submit" name="add_to_cart">Add to Cart</button>
-                </form>
+    <input type="hidden" name="product_id" value="<?php echo $row['id']; ?>">
+    <input type="number" name="quantity" class="quantity-input" value="1" min="1">
+    <button type="submit" name="add_to_cart">Add to Cart</button>
+</form>
             </div>
         <?php 
             }
@@ -173,16 +170,22 @@ if (isset($_POST['remove_item'])) {
             </div>
             <div class="btn">
                 <button class="close" onclick="toggleCart()">CLOSE</button>
-                <a href="checkout.php"><button class="checkout">CHECK OUT</button></a>
+                <button class="checkout"><a href="checkout.php">CHECK OUT</button></a>
             </div>
         </div>
     </div>
 
     <script>
-        function togglemenu(){
-            const navlinks=document.getElementById('navlinks');
-            navlinks.classList.toggle('open');
-        }
+        function showmenu() {
+    const navlinks = document.getElementById('navlinks');
+    navlinks.classList.add('open');
+}
+
+function hidemenu() {
+    const navlinks = document.getElementById('navlinks');
+    navlinks.classList.remove('open');
+}
+
 
         function toggleCart() {
             const cartTab = document.getElementById('cart-tab');

@@ -49,7 +49,7 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : ''; // Get user role from session
         <div class="text-box">
             <h1>World's biggest brands store</h1>
             <p>In our store you can find clothing's products of biggest brands for a better price</p>
-            <a href="products.html" class="hero-btn">Look at the products</a>
+            <a href="products.php" class="hero-btn">Look at the products</a>
         </div>
     </section>
 
@@ -58,9 +58,9 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : ''; // Get user role from session
         <p>Look at our new collection</p>
         <div class="slider">
             <div class="slider-track">
-                <div class="slide"><img src="images/reddres1.jpg" alt="Photo 1"></div>
+                <div class="slide"><img src="images/_ALE0015.png" alt="Photo 1"></div>
                 <div class="slide"><img src="images/all-black-suits.png" alt="Photo 2"></div>
-                <div class="slide"><img src="" alt="Photo 3"></div>
+                <div class="slide"><img src="images/female.jpg" alt="Photo 3"></div>
             </div>
             <div class="slider-buttons">
                 <button class="slider-button" id="prev">&#9664;</button>
