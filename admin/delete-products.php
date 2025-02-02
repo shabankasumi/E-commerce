@@ -1,10 +1,18 @@
 <?php
 require_once 'ManageProduct.php';
-$productObj = new ManageProduct($conn);
 
-$id = $_GET['id'];
+if (isset($_GET['id'])) {
+    $product_id = $_GET['id'];
 
-$productObj->deleteProduct($id);
-header("Location: adminproducts.php");
-exit();
+    $productObj = new ManageProduct();
+
+    if ($productObj->deleteProduct($product_id)) {
+        header("Location: adminproduct.php?message=Product deleted successfully.");
+    } else {
+        header("Location: adminproduct.php?error=Failed to delete product.");
+    }
+} else {
+    header("Location: adminproduct.php");
+}
+exit;
 ?>

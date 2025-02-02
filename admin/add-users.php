@@ -2,22 +2,17 @@
 require_once 'ManageUser.php'; 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Fetch user inputs from the form
+   
     $username = $_POST['username'];
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    // Validate inputs (you can add more validations as needed)
+ 
     if (empty($username) || empty($email) || empty($password)) {
         $error_message = "All fields are required!";
     } else {
-        // Create an instance of ManageUser
         $userObj = new ManageUser();
-
-        // Hash the password before storing it (for security reasons)
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-        // Insert the user into the database
         $userObj->addUser($username, $email, $hashed_password);
         $success_message = "User added successfully!";
         $locate = header('Location: user.php');
@@ -31,14 +26,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add User</title>
-    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
 </head>
 <body>
 
     <div class="dashboard">
-        <h1>Add User</h1>
+    <h1><b><a href="index.php"><i class="fa-solid fa-arrow-left"></i></a></b>Add User</h1>
 
-        <!-- Display success or error message -->
         <?php if (isset($success_message)): ?>
             <div class="success"><?php echo $success_message; ?></div>
         <?php endif; ?>
@@ -47,7 +43,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="error"><?php echo $error_message; ?></div>
         <?php endif; ?>
 
-        <!-- User Add Form -->
         <form action="add-users.php" method="POST">
             <label for="username">Username</label>
             <input type="text" name="username" id="username" required>

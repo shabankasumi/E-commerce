@@ -11,12 +11,12 @@ $admins = $adminObj->getAllAdmins();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Admins</title>
-    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
     <div class="container">
-        <h1><b><a href="index.php">&larr; Back</a></b></h1>
-        <h1>Manage Admins</h1>
+        <h1><b><a href="index.php"><i class="fa-solid fa-arrow-left"></i></a></b>Manage Admin</h1>
 
         <a href="add-admin.php" class="btn-add">Add Admin</a>
 

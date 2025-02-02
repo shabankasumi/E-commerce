@@ -1,48 +1,65 @@
 <?php
+require_once 'constant.php';
+
 class ManageProduct {
     private $conn;
+    private $table = "products";
 
-    public function __construct($conn) {
-        $this->conn = $conn;
+    public function __construct() {
+        $db = new Database(); 
+        $this->conn = $db->getConnection(); 
     }
 
-    public function getAllProducts() {         
-        $sql = "SELECT * FROM products";
-        $result = $this->conn->query($sql);
+    // Fetch all products
+    public function getAllProducts() {
+        $query = "SELECT * FROM {$this->table}";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        
+        // Return the MySQLi result set, not as an array
+        return $stmt->get_result(); // This returns a MySQLi result object
+    }
     
-        if ($result) {
-            if ($result->num_rows > 0) {
-                $products = [];
-                while ($row = $result->fetch_assoc()) {
-                    $products[] = $row;
-                }
-                return $products;
-            } else {
-                return [];
-            }
-        } else {
-            echo "Error: " . $this->conn->error;
-            return [];
-        }
-}
+    // Get product by ID
+    public function getProductById($id) {
+        $query = "SELECT * FROM {$this->table} WHERE id = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        return $stmt->get_result()->fetch_assoc();
+    }
 
-
-    public function addProduct($name, $price, $stock) {
-        $stmt = $this->conn->prepare("INSERT INTO products (name, price, stock) VALUES (?, ?, ?)");
-        $stmt->bind_param("sdi", $name, $price, $stock);
+    // Add a new product
+    public function addProduct($name, $description, $price, $image) {
+        $query = "INSERT INTO {$this->table} (name, description, price, image, created_at) VALUES (?, ?, ?, ?, NOW())";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("ssds", $name, $description, $price, $image);
         return $stmt->execute();
     }
 
-    public function updateProduct($id, $name, $price, $stock) {
-        $stmt = $this->conn->prepare("UPDATE products SET name = ?, price = ?, stock = ? WHERE id = ?");
-        $stmt->bind_param("sdii", $name, $price, $stock, $id);
+    // Update an existing product
+    public function updateProduct($id, $name, $description, $price, $image) {
+        $query = "UPDATE {$this->table} SET name = ?, description = ?, price = ?, image = ? WHERE id = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("ssdsi", $name, $description, $price, $image, $id);
         return $stmt->execute();
     }
 
+    // Delete a product
     public function deleteProduct($id) {
-        $stmt = $this->conn->prepare("DELETE FROM products WHERE id = ?");
+        $query = "DELETE FROM {$this->table} WHERE id = ?";
+        $stmt = $this->conn->prepare($query);
         $stmt->bind_param("i", $id);
         return $stmt->execute();
+    }
+
+    // Count total products
+    public function countProducts() {
+        $query = "SELECT COUNT(*) as total_products FROM {$this->table}";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        $row = $stmt->get_result()->fetch_assoc();
+        return $row['total_products'];
     }
 }
 ?>

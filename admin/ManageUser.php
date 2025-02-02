@@ -1,5 +1,5 @@
 <?php
-require_once '../config/constant.php';
+require_once 'constant.php';
 
 class ManageUser {
     private $conn;

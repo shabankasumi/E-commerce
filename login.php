@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once './config/constant.php'; // Include your DB connection constants
+require_once './admin/constant.php'; // Include your DB connection constants
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Get form data

@@ -33,12 +33,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Admin</title>
-    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-
-    <div class="dashboard">
-        <h1>Add Admin</h1>
+    
+    <div class="container">
+        <h1><b><a href="index.php"><i class="fa-solid fa-arrow-left"></i></a></b>Add Admin</h1>
 
         <!-- Display success or error message -->
         <?php if (isset($success_message)): ?>

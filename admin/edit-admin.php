@@ -40,13 +40,14 @@ if (isset($_GET['id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Admin</title>
-    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-
-
-    <div class="dashboard">
-        <h1>Edit Admin</h1>
+    
+    
+    <div class="container">
+        <h1><b><a href="admin.php"><i class="fa-solid fa-arrow-left"></i></a></b>Edit Admin</h1>
 
         <?php if (isset($success_message)): ?>
             <div class="success"><?php echo $success_message; ?></div>

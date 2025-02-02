@@ -2,9 +2,14 @@
 require_once 'ManageUser.php';
 require_once'ManageOrder.php';
 require_once'ManageAdmin.php';
+require_once'ManageProduct.php';
+
 
 $adminObj = new ManageAdmin();
 $totalAdmins = $adminObj->countAdmins();
+
+$productObj = new ManageProduct();
+$totalProducts = $productObj->countProducts();
 
 $orderObj=new ManageOrder();
 $totalOrders= $orderObj-> countOrders();
@@ -34,7 +39,7 @@ $totalUsers = $userObj->countUsers();
             
             <div class="section">
                 <h2>Products</h2>
-                <h1><b>72</b></h1>
+                <h1><b><?= $totalProducts ?></b></h1>
                 <a href="adminproduct.php" class="btn">View Products</a>
             </div>
 

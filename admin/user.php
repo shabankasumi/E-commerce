@@ -11,12 +11,17 @@ $users = $userObj->getAllUsers();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Users</title>
-    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
     <div class="container">
-        <h1><b><a href="index.php"><-</a></b></h1>
-        <h1>Manage Users</h1>
+        <h1><b><a href="index.php"><i class="fa-solid fa-arrow-left"></i></a></b>Manage Users</h1>
+
+
+        <div class="add-user-btn">
+            <a href="add-users.php" class="btn-add">Add User</a>
+        </div>
 
         <table>
             <thead>
@@ -27,7 +32,6 @@ $users = $userObj->getAllUsers();
                     <th>Password</th>
                     <th>Actions</th>
                 </tr>
-                <a href="add-users.php">ADD USER</a>
             </thead>
             <tbody>
                 <?php foreach ($users as $user): ?>
@@ -35,7 +39,7 @@ $users = $userObj->getAllUsers();
                         <td><?= $user['id'] ?></td>
                         <td><?= htmlspecialchars($user['username']) ?></td>
                         <td><?= htmlspecialchars($user['email']) ?></td>
-                        <td><?php echo str_repeat('*', strlen($user['password'])); ?></td>
+                        <td>********</td>
                         <td>
                             <a href="edit-users.php?id=<?= $user['id'] ?>" class="btn-edit">Edit</a>
                             <a href="delete-users.php?id=<?= $user['id'] ?>" class="btn-delete" onclick="return confirm('Are you sure?')">Delete</a>

@@ -4,6 +4,8 @@ session_start(); // Start session to check login status and user role
 // Check if the user is logged in
 $isLoggedIn = isset($_SESSION['user_id']);
 $userRole = $isLoggedIn ? $_SESSION['role'] : ''; // Get user role from session
+
+
 ?>
 
 <!DOCTYPE html>

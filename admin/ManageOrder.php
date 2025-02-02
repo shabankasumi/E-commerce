@@ -1,5 +1,5 @@
 <?php
-require_once '../config/constant.php';
+require_once 'constant.php';
 
 class ManageOrder {
     private $conn;
@@ -8,9 +8,9 @@ class ManageOrder {
     public function __construct() {
         $db = new Database(); 
         $this->conn = $db->getConnection(); 
-        }
-    
+    }
 
+    // Fetch all orders
     public function getAllOrders() {
         $query = "SELECT * FROM {$this->table}";
         $stmt = $this->conn->prepare($query);
@@ -18,10 +18,11 @@ class ManageOrder {
         return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     }
 
+    // Add new order
     public function addOrder($userId, $productDetails, $totalAmount, $status) {
-        $query = "INSERT INTO {$this->table} (username, email, password, role) VALUES (?, ?, ?, ?)";
+        $query = "INSERT INTO {$this->table} (user_id, product_details, total_amount, status) VALUES (?, ?, ?, ?)";
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("isis",  $userId, $productDetails, $totalAmount, $status);
+        $stmt->bind_param("isis", $userId, $productDetails, $totalAmount, $status);
 
         if ($stmt->execute()) {
             return true;
@@ -29,16 +30,16 @@ class ManageOrder {
             return false;
         }
     }
-   
 
+    // Update order status
     public function updateOrder($orderId, $status) {
         $query = "UPDATE {$this->table} SET status = ? WHERE id = ?";
         $stmt = $this->conn->prepare($query);
         $stmt->bind_param("si", $status, $orderId);
         return $stmt->execute();
     }
-  
 
+    // Delete order
     public function deleteOrder($orderId) {
         $query = "DELETE FROM {$this->table} WHERE id = ?";
         $stmt = $this->conn->prepare($query);
@@ -46,6 +47,8 @@ class ManageOrder {
 
         return $stmt->execute();
     }
+
+    // Count total orders
     public function countOrders() {
         $query = "SELECT COUNT(*) as total_orders FROM " . $this->table;
         $stmt = $this->conn->prepare($query);
@@ -54,8 +57,5 @@ class ManageOrder {
         $row = $stmt->get_result()->fetch_assoc();
         return $row['total_orders'];
     }
-
 }
-
-
 ?>
