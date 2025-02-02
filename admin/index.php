@@ -13,10 +13,8 @@ $totalProducts = $productObj->countProducts();
 
 $orderObj=new ManageOrder();
 $totalOrders= $orderObj-> countOrders();
-// Create an instance of the ManageUser class
 $userObj = new ManageUser(); 
 
-// Get total users count
 $totalUsers = $userObj->countUsers();
 
 ?>

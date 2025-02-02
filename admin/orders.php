@@ -39,10 +39,8 @@ $orders = $orderObj->getAllOrders();
                         <td><?= htmlspecialchars($order['user_id']) ?></td>
                         <td>
                             <?php
-                                // Decode the JSON product details
                                 $products = json_decode($order['product_details'], true);
 
-                                // Loop through each product and display details
                                 if ($products) {
                                     echo "Product: ";
                                     foreach ($products as $product) {

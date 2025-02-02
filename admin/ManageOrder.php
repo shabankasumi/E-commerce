@@ -10,7 +10,6 @@ class ManageOrder {
         $this->conn = $db->getConnection(); 
     }
 
-    // Fetch all orders
     public function getAllOrders() {
         $query = "SELECT * FROM {$this->table}";
         $stmt = $this->conn->prepare($query);
@@ -18,7 +17,6 @@ class ManageOrder {
         return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     }
 
-    // Add new order
     public function addOrder($userId, $productDetails, $totalAmount, $status) {
         $query = "INSERT INTO {$this->table} (user_id, product_details, total_amount, status) VALUES (?, ?, ?, ?)";
         $stmt = $this->conn->prepare($query);
@@ -31,7 +29,6 @@ class ManageOrder {
         }
     }
 
-    // Update order status
     public function updateOrder($orderId, $status) {
         $query = "UPDATE {$this->table} SET status = ? WHERE id = ?";
         $stmt = $this->conn->prepare($query);
@@ -39,7 +36,6 @@ class ManageOrder {
         return $stmt->execute();
     }
 
-    // Delete order
     public function deleteOrder($orderId) {
         $query = "DELETE FROM {$this->table} WHERE id = ?";
         $stmt = $this->conn->prepare($query);
@@ -48,7 +44,6 @@ class ManageOrder {
         return $stmt->execute();
     }
 
-    // Count total orders
     public function countOrders() {
         $query = "SELECT COUNT(*) as total_orders FROM " . $this->table;
         $stmt = $this->conn->prepare($query);

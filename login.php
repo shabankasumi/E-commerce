@@ -1,16 +1,15 @@
 <?php
 session_start();
-require_once './admin/constant.php'; // Include your DB connection constants
+require_once './admin/constant.php'; 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Get form data
+   
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // Initialize error array
+   
     $errors = [];
 
-    // Server-side validation
     if (empty($username)) {
         $errors['username'] = "Username is required.";
     }
@@ -20,13 +19,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (empty($errors)) {
-        // Connect to the database
         $conn = mysqli_connect(LOCALHOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
         if (!$conn) {
             die("Connection failed: " . mysqli_connect_error());
         }
 
-        // Query to check if the username exists in the users table
         $sql = "SELECT * FROM users WHERE username = ?";
         $stmt = mysqli_prepare($conn, $sql);
         mysqli_stmt_bind_param($stmt, "s", $username);
@@ -34,24 +31,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $result = mysqli_stmt_get_result($stmt);
 
         if (mysqli_num_rows($result) > 0) {
-            // User found in the 'users' table
             $user = mysqli_fetch_assoc($result);
 
-            // Verify the password
             if (password_verify($password, $user['password'])) {
-                // Password is correct
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['username'] = $user['username'];
                 $_SESSION['role'] = $user['role'];
 
-                // Redirect to the dashboard or another page
                 header("Location: index.php");
                 exit();
             } else {
                 $errors['password'] = "Invalid password.";
             }
         } else {
-            // Query to check if the username exists in the 'admins' table
             $sql_admin = "SELECT * FROM admins WHERE username = ?";
             $stmt_admin = mysqli_prepare($conn, $sql_admin);
             mysqli_stmt_bind_param($stmt_admin, "s", $username);
@@ -59,7 +51,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $result_admin = mysqli_stmt_get_result($stmt_admin);
 
             if (mysqli_num_rows($result_admin) > 0) {
-                // Admin found in the 'admins' table
                 $admin = mysqli_fetch_assoc($result_admin);
 
                 if (password_verify($password, $admin['password'])) {

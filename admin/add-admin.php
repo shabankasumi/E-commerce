@@ -2,20 +2,17 @@
 require_once 'ManageAdmin.php'; 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Fetch user inputs from the form
+    
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // Validate inputs (you can add more validations as needed)
-    if (empty($username) || empty($password)) {
+     if (empty($username) || empty($password)) {
         $error_message = "All fields are required!";
     } else {
         $adminObj = new ManageAdmin();
-
-        // Hash the password before storing it
+    
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-        // Insert the admin into the database
         if ($adminObj->addAdmin($username, $hashed_password)) {
             $success_message = "Admin added successfully!";
             header('Location: admin.php');
@@ -41,7 +38,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="container">
         <h1><b><a href="index.php"><i class="fa-solid fa-arrow-left"></i></a></b>Add Admin</h1>
 
-        <!-- Display success or error message -->
         <?php if (isset($success_message)): ?>
             <div class="success"><?php echo $success_message; ?></div>
         <?php endif; ?>
@@ -50,7 +46,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="error"><?php echo $error_message; ?></div>
         <?php endif; ?>
 
-        <!-- Admin Add Form -->
         <form action="add-admin.php" method="POST">
             <label for="username">Username</label>
             <input type="text" name="username" id="username" required>

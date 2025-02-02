@@ -1,17 +1,15 @@
 <?php
-require_once './admin/constant.php'; // Include your DB connection constants
+require_once './admin/constant.php'; 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Get form data
+    
     $username = $_POST['username'];
     $email = $_POST['email'];
     $password = $_POST['password'];
     $confirmPassword = $_POST['confirmPassword'];
 
-    // Initialize error array
-    $errors = [];
+     $errors = [];
 
-    // Server-side validation
     if (empty($username)) {
         $errors['username'] = "Username is required.";
     }
@@ -35,10 +33,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (empty($errors)) {
-        // Hash the password
         $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
-        // Insert into the database
         $conn = mysqli_connect(LOCALHOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
         if (!$conn) {
             die("Connection failed: " . mysqli_connect_error());
@@ -50,7 +46,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($stmt) {
             mysqli_stmt_bind_param($stmt, "ssss", $username, $email, $hashedPassword, $role);
             if (mysqli_stmt_execute($stmt)) {
-                // Redirect to login page after successful registration
                 header("Location: login.php"); 
                 exit();
             } else {

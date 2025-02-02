@@ -10,7 +10,6 @@ class ManageAdmin {
         $this->conn = $db->getConnection(); 
     }
 
-    // Fetch all admins
     public function getAllAdmins() {
         $query = "SELECT * FROM {$this->table}";
         $stmt = $this->conn->prepare($query);
@@ -18,7 +17,6 @@ class ManageAdmin {
         return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     }
 
-    // Get admin by ID
     public function getAdminById($id) {
         $query = "SELECT * FROM {$this->table} WHERE id = ?";
         $stmt = $this->conn->prepare($query);
@@ -28,7 +26,6 @@ class ManageAdmin {
         return $result->fetch_assoc();
     }
 
-    // Add a new admin
     public function addAdmin($username, $password, $role = 'admin') {
         $query = "INSERT INTO {$this->table} (username,password, role) VALUES (?, ?, ?)";
         
@@ -38,7 +35,6 @@ class ManageAdmin {
         return $stmt->execute();
     }
 
-    // Update admin
     public function updateAdmin($id, $username, $password = null) {
         if ($password) {
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
@@ -54,7 +50,6 @@ class ManageAdmin {
         return $stmt->execute();
     }
 
-    // Delete admin
     public function deleteAdmin($id) {
         $query = "DELETE FROM {$this->table} WHERE id = ?";
         $stmt = $this->conn->prepare($query);
@@ -62,7 +57,6 @@ class ManageAdmin {
         return $stmt->execute();
     }
 
-    // Count total admins
     public function countAdmins() {
         $query = "SELECT COUNT(*) as total_admins FROM " . $this->table;
         $stmt = $this->conn->prepare($query);

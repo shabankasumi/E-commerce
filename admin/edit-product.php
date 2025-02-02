@@ -18,9 +18,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = $_POST['name'];
     $description = $_POST['description'];
     $price = $_POST['price'];
-    $image = $product['image']; // Default to existing image
+    $image = $product['image']; 
 
-    // Handle file upload if a new image is selected
     if (!empty($_FILES['image']['name'])) {
         $image = time() . "_" . basename($_FILES['image']['name']); // Unique filename
         $imagePath = "../images/" . $image;
@@ -30,7 +29,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    // Update the product
     $isUpdated = $productObj->updateProduct($id, $name, $description, $price, $image);
 
     if ($isUpdated) {

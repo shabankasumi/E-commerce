@@ -8,14 +8,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $description = htmlspecialchars($_POST['description']);
     $price = $_POST['price'];
 
-    // Handle image upload
     $image = null;
     if (!empty($_FILES['image']['name'])) {
         $targetDir = "uploads/";
         $image = basename($_FILES['image']['name']);
         $targetFilePath = $targetDir . $image;
         
-        // Move uploaded file to the uploads directory
         if (!move_uploaded_file($_FILES['image']['tmp_name'], $targetFilePath)) {
             echo "Error uploading image.";
             exit;

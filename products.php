@@ -1,30 +1,26 @@
 <?php
 
-session_start(); // Start session to check login status and user role
+session_start(); 
 
-// Check if the user is logged in
+
 $isLoggedIn = isset($_SESSION['user_id']);
-$userRole = $isLoggedIn ? $_SESSION['role'] : ''; // Get user role from session
+$userRole = $isLoggedIn ? $_SESSION['role'] : ''; 
 
 require_once './admin/ManageProduct.php';
 
-// Assuming user is logged in, get user ID
-$userId = 1; // Example user ID, replace with actual logged-in user ID
+$userId = 1; 
 
 $productObj = new ManageProduct();
-$products = $productObj->getAllProducts(); // Fetch products
+$products = $productObj->getAllProducts(); 
 
-// Add product to cart when the form is submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
-    $product_id = $_POST['product_id'];  // ID of the product being added to the cart
-    $quantity = $_POST['quantity'] ?? 1;  // Quantity of the product
+    $product_id = $_POST['product_id'];  
+    $quantity = $_POST['quantity'] ?? 1; 
 
-    // Initialize cart session if not set
     if (!isset($_SESSION['cart'])) {
         $_SESSION['cart'] = [];
     }
 
-    // If product is already in the cart, increase quantity, otherwise add to cart
     if (isset($_SESSION['cart'][$product_id])) {
         $_SESSION['cart'][$product_id]['quantity'] += $quantity;
     } else {
@@ -33,15 +29,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
         ];
     }
 
-    // Redirect back to products page to update the cart
     header('Location: products.php');
     exit();
 }
 
-// Handle quantity update in the cart (increase or decrease)
 if (isset($_POST['update_cart'])) {
     $product_id = $_POST['product_id'];
-    $action = $_POST['action']; // "increase" or "decrease"
+    $action = $_POST['action']; 
 
     if (isset($_SESSION['cart'][$product_id])) {
         if ($action == 'increase') {
@@ -51,20 +45,18 @@ if (isset($_POST['update_cart'])) {
         }
     }
 
-    // Redirect to refresh the cart view
+    
     header('Location: products.php');
     exit();
 }
 
-// Remove product from the cart
+
 if (isset($_POST['remove_item'])) {
     $product_id = $_POST['product_id'];
 
     if (isset($_SESSION['cart'][$product_id])) {
         unset($_SESSION['cart'][$product_id]);
     }
-
-    // Redirect to refresh the cart view
     header('Location: products.php');
     exit();
 }
@@ -94,7 +86,6 @@ if (isset($_POST['remove_item'])) {
                     <li><a href="products.php">Products</a></li>
                     <li><a href="about-us.html">About Us</a></li>
                     
-                    <!-- Show Login or Logout based on login status -->
                     <?php if ($isLoggedIn): ?>
                         <li><a href="logout.php" class="btn-logout">Logout</a></li>
                     <?php else: ?>
@@ -118,7 +109,6 @@ if (isset($_POST['remove_item'])) {
                 <h3><?php echo htmlspecialchars($row['name']); ?></h3>
                 <p>$<?php echo number_format($row['price'], 2); ?></p> 
 
-                <!-- Add to Cart Form -->
                 <form method="POST">
     <input type="hidden" name="product_id" value="<?php echo $row['id']; ?>">
     <input type="number" name="quantity" class="quantity-input" value="1" min="1">
@@ -159,7 +149,6 @@ if (isset($_POST['remove_item'])) {
                             <button type="submit" name="remove_item" class="remove-item">X</button>
                         </form>
                     </div>
-                    <!-- Remove Item Button -->
                 </div>
                 <?php
                     }
