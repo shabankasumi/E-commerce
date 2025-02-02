@@ -1,54 +1,50 @@
 <?php
+require_once 'ManageAdmin.php';
 
-class Admin {
-    private $conn;
-    private $table = "admins";
+$adminObj = new ManageAdmin();
+$admins = $adminObj->getAllAdmins();
+?>
 
-    public function __construct($db) {
-        $this->conn = $db;
-    }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Admins</title>
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <div class="container">
+        <h1><b><a href="index.php">&larr; Back</a></b></h1>
+        <h1>Manage Admins</h1>
 
-    // Fetch all admins
-    public function getAllAdmins() {
-        $query = "SELECT * FROM {$this->table}";
-        $stmt = $this->conn->prepare($query);
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
+        <a href="add-admin.php" class="btn-add">Add Admin</a>
 
-    // Add a new admin
-    public function addAdmin($username, $password, $role = 'admin') {
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-        $query = "INSERT INTO {$this->table} (username, password, role) VALUES (:username, :password, :role)";
-        $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(':username', $username);
-        $stmt->bindParam(':password', $hashedPassword);
-        $stmt->bindParam(':role', $role);
-        return $stmt->execute();
-    }
-
-    // Update admin
-    public function updateAdmin($id, $username, $password = null) {
-        if ($password) {
-            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-            $query = "UPDATE {$this->table} SET username = :username, password = :password WHERE id = :id";
-        } else {
-            $query = "UPDATE {$this->table} SET username = :username WHERE id = :id";
-        }
-        $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(':username', $username);
-        if ($password) {
-            $stmt->bindParam(':password', $hashedPassword);
-        }
-        $stmt->bindParam(':id', $id);
-        return $stmt->execute();
-    }
-
-    // Delete admin
-    public function deleteAdmin($id) {
-        $query = "DELETE FROM {$this->table} WHERE id = :id";
-        $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(':id', $id);
-        return $stmt->execute();
-    }
-}
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if (!empty($admins)): ?>
+                    <?php foreach ($admins as $admin): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($admin['id']) ?></td>
+                            <td><?= htmlspecialchars($admin['username']) ?></td>
+                            <td>
+                                <a href="edit-admin.php?id=<?= $admin['id'] ?>" class="btn-edit">Edit</a>
+                                <a href="delete-admin.php?id=<?= $admin['id'] ?>" class="btn-delete" onclick="return confirm('Are you sure?')">Delete</a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <tr><td colspan="4">No admins found.</td></tr>
+                <?php endif; ?>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,6 +1,11 @@
 <?php include("partials/header.php");
 require_once 'ManageUser.php';
 require_once'ManageOrder.php';
+require_once'ManageAdmin.php';
+
+$adminObj = new ManageAdmin();
+$totalAdmins = $adminObj->countAdmins();
+
 $orderObj=new ManageOrder();
 $totalOrders= $orderObj-> countOrders();
 // Create an instance of the ManageUser class
@@ -20,15 +25,7 @@ $totalUsers = $userObj->countUsers();
     <link rel="stylesheet" href="css/admin.css">
 </head>
 <body>
-    
-    <nav class="menu">
-        <div class="wrapper">
-            <ul>
-                <li><a href="../index.php">Home</a></li>
-                <li><a href="admin.php">Admin</a></li>
-            </ul>
-        </div>
-    </nav>
+
 
 
     <div class="dashboard">
@@ -57,9 +54,9 @@ $totalUsers = $userObj->countUsers();
 
            
             <div class="section">
-                <h2>Analytics</h2>
-                <h1><b>72</b></h1>
-                <a href="analytics.php" class="btn">View Analytics</a>
+                <h2>Admins</h2>
+                <h1><b><?= $totalAdmins ?></b></h1>
+                <a href="admin.php" class="btn">View Admins</a>
             </div>
         </div>
     </div>

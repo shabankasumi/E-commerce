@@ -17,7 +17,7 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : ''; // Get user role from session
 </head>
 <body>
     <section class="header">
-        <a href="index.html"> <img class="logo" src="images/logoblack.png" alt="Logo"></a>
+        <a href="index.php"> <img class="logo" src="images/logoblack.png" alt="Logo"></a>
         
         <nav class="nav">
             <div class="nav-links" id="navlinks">
@@ -27,8 +27,14 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : ''; // Get user role from session
                     <li><a href="index.php">Home</a></li>
                     <li><a href="products.php">Products</a></li>
                     <li><a href="about-us.html">About Us</a></li>
-                    <li><a href="login.php"><i class="fa-regular fa-user"></i></a></li>
                     
+                    <!-- Show Login or Logout based on login status -->
+                    <?php if ($isLoggedIn): ?>
+                        <li><a href="logout.php" class="btn-logout">Logout</a></li>
+                    <?php else: ?>
+                        <li><a href="login.php"><i class="fa-regular fa-user"></i> Login</a></li>
+                    <?php endif; ?>
+
                     <!-- Conditionally show the Dashboard link for Admin users -->
                     <?php if ($isLoggedIn && $userRole == 'admin'): ?>
                         <li><a href="./admin/index.php">Dashboard</a></li>
@@ -48,7 +54,7 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : ''; // Get user role from session
     <section class="newproducts">
         <H1>New arrivals</H1>
         <p>Look at our new collection</p>
-       <div class="slider">
+        <div class="slider">
             <div class="slider-track">
                 <div class="slide"><img src="images/reddres1.jpg" alt="Photo 1"></div>
                 <div class="slide"><img src="images/all-black-suits.png" alt="Photo 2"></div>
