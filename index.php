@@ -1,9 +1,8 @@
 <?php
-session_start(); // Start session to check login status and user role
+session_start(); 
 
-// Check if the user is logged in
 $isLoggedIn = isset($_SESSION['user_id']);
-$userRole = $isLoggedIn ? $_SESSION['role'] : ''; // Get user role from session
+$userRole = $isLoggedIn ? $_SESSION['role'] : '';
 
 
 ?>
@@ -30,14 +29,12 @@ $userRole = $isLoggedIn ? $_SESSION['role'] : ''; // Get user role from session
                     <li><a href="products.php">Products</a></li>
                     <li><a href="about-us.html">About Us</a></li>
                     
-                    <!-- Show Login or Logout based on login status -->
                     <?php if ($isLoggedIn): ?>
                         <li><a href="logout.php" class="btn-logout">Logout</a></li>
                     <?php else: ?>
                         <li><a href="login.php"><i class="fa-regular fa-user"></i> Login</a></li>
                     <?php endif; ?>
 
-                    <!-- Conditionally show the Dashboard link for Admin users -->
                     <?php if ($isLoggedIn && $userRole == 'admin'): ?>
                         <li><a href="./admin/index.php">Dashboard</a></li>
                     <?php endif; ?>

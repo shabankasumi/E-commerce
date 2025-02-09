@@ -10,17 +10,14 @@ class ManageProduct {
         $this->conn = $db->getConnection(); 
     }
 
-    // Fetch all products
     public function getAllProducts() {
         $query = "SELECT * FROM {$this->table}";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         
-        // Return the MySQLi result set, not as an array
-        return $stmt->get_result(); // This returns a MySQLi result object
+        return $stmt->get_result(); 
     }
     
-    // Get product by ID
     public function getProductById($id) {
         $query = "SELECT * FROM {$this->table} WHERE id = ?";
         $stmt = $this->conn->prepare($query);
@@ -29,7 +26,6 @@ class ManageProduct {
         return $stmt->get_result()->fetch_assoc();
     }
 
-    // Add a new product
     public function addProduct($name, $description, $price, $image) {
         $query = "INSERT INTO {$this->table} (name, description, price, image, created_at) VALUES (?, ?, ?, ?, NOW())";
         $stmt = $this->conn->prepare($query);
@@ -37,7 +33,6 @@ class ManageProduct {
         return $stmt->execute();
     }
 
-    // Update an existing product
     public function updateProduct($id, $name, $description, $price, $image) {
         $query = "UPDATE {$this->table} SET name = ?, description = ?, price = ?, image = ? WHERE id = ?";
         $stmt = $this->conn->prepare($query);
@@ -45,7 +40,6 @@ class ManageProduct {
         return $stmt->execute();
     }
 
-    // Delete a product
     public function deleteProduct($id) {
         $query = "DELETE FROM {$this->table} WHERE id = ?";
         $stmt = $this->conn->prepare($query);
@@ -53,7 +47,6 @@ class ManageProduct {
         return $stmt->execute();
     }
 
-    // Count total products
     public function countProducts() {
         $query = "SELECT COUNT(*) as total_products FROM {$this->table}";
         $stmt = $this->conn->prepare($query);
