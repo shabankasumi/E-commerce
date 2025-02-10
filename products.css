@@ -235,15 +235,21 @@ justify-content: center;
         grid-template-columns: repeat(2,1fr);
     
     }
-    .carttab .btn button{
-        background-color:yellow;
-        border:none;
-        font-family: Poppins;
+    .carttab .btn button {
+        background-color: yellow  ;
+        color: black ;
+        border: none; 
+        font-weight: bold;
+        padding: 28px 38px;
         cursor: pointer;
     }
-    .carttab .btn .close{
-background-color: white;
+    
+    .carttab .btn .close {
+        background-color: white ; 
+        color: black ;
     }
+    
+   
     .carttab .listcart .item img{
         width: 100%;
     }
