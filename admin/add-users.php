@@ -1,5 +1,6 @@
 <?php
-require_once 'ManageUser.php'; 
+require_once 'auth_guard.php';
+require_once 'ManageUser.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
    
@@ -14,8 +15,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $userObj = new ManageUser();
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
         $userObj->addUser($username, $email, $hashed_password);
-        $success_message = "User added successfully!";
-        $locate = header('Location: user.php');
+        header('Location: user.php');
+        exit();
     }
 }
 ?>

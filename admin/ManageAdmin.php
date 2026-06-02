@@ -42,7 +42,7 @@ class ManageAdmin {
             $stmt = $this->conn->prepare($query);
             $stmt->bind_param("ssi", $username, $hashedPassword, $id);
         } else {
-            $query = "UPDATE {$this->table} SET username = ?, WHERE id = ?";
+            $query = "UPDATE {$this->table} SET username = ? WHERE id = ?";
             $stmt = $this->conn->prepare($query);
             $stmt->bind_param("si", $username, $id);
         }

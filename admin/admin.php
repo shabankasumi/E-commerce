@@ -1,4 +1,5 @@
 <?php
+require_once 'auth_guard.php';
 require_once 'ManageAdmin.php';
 
 $adminObj = new ManageAdmin();

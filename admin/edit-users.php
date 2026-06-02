@@ -1,4 +1,5 @@
 <?php
+require_once 'auth_guard.php';
 require_once 'ManageUser.php';
 
 if (isset($_GET['id'])) {
@@ -23,7 +24,8 @@ if (isset($_GET['id'])) {
             $hashed_password = $userDetails['password'];
         }
         if ($userObj->updateUser($user_id, $username, $email, $hashed_password)) {
-            $success_message = "User updated successfully!";
+            header('Location: user.php');
+            exit;
         } else {
             $error_message = "Failed to update user!";
         }

@@ -4,8 +4,8 @@ session_start();
 
 
 $isLoggedIn = isset($_SESSION['user_id']);
-$userRole = $isLoggedIn ? $_SESSION['role'] : ''; 
-$userId = $_SESSION['user_id']; 
+$userRole = $isLoggedIn ? $_SESSION['role'] : '';
+$userId = $isLoggedIn ? $_SESSION['user_id'] : null;
 
 require_once './admin/ManageProduct.php';
 require_once './admin/ManageOrder.php';
@@ -65,33 +65,40 @@ if (isset($_POST['remove_item'])) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['checkout'])) {
+    if (!$isLoggedIn) {
+        header('Location: login.php');
+        exit();
+    }
     if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
         $productDetails = [];
         $totalAmount = 0;
 
         foreach ($_SESSION['cart'] as $productId => $item) {
-            $product = $productObj->getProductById($productId); 
+            $product = $productObj->getProductById($productId);
             $productDetails[] = [
                 'product_id' => $product['id'],
                 'name' => $product['name'],
                 'price' => $product['price'],
                 'quantity' => $item['quantity']
             ];
-            $totalAmount += $product['price'] * $item['quantity']; 
+            $totalAmount += $product['price'] * $item['quantity'];
         }
 
-        $status = 'pending'; 
-        $orderDetails = json_encode($productDetails); 
+        $status = 'pending';
+        $orderDetails = json_encode($productDetails);
 
         if ($orderObj->addOrder($userId, $orderDetails, $totalAmount, $status)) {
             unset($_SESSION['cart']);
-            echo "Order placed successfully!";
-            header('Location: products.php');
+            $_SESSION['flash_success'] = 'Order placed successfully!';
         } else {
-            echo "Error placing order.";
+            $_SESSION['flash_error'] = 'Error placing order. Please try again.';
         }
+        header('Location: products.php');
+        exit();
     } else {
-        echo "Your cart is empty.";
+        $_SESSION['flash_error'] = 'Your cart is empty.';
+        header('Location: products.php');
+        exit();
     }
 }
 ?>
@@ -133,15 +140,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['checkout'])) {
         </nav>
     </section>
 
-    <div class="row"> 
-        <?php 
-        if ($products) {
-            while ($row = $products->fetch_assoc()) {
-        ?>
+    <?php if (!empty($_SESSION['flash_success'])): ?>
+        <div class="flash-success"><?= htmlspecialchars($_SESSION['flash_success']) ?></div>
+        <?php unset($_SESSION['flash_success']); ?>
+    <?php endif; ?>
+    <?php if (!empty($_SESSION['flash_error'])): ?>
+        <div class="flash-error"><?= htmlspecialchars($_SESSION['flash_error']) ?></div>
+        <?php unset($_SESSION['flash_error']); ?>
+    <?php endif; ?>
+
+    <div class="row">
+        <?php if (!empty($products)): ?>
+            <?php foreach ($products as $row): ?>
             <div class="photo">
                 <img src="admin/uploads/<?php echo htmlspecialchars($row['image']); ?>" alt="<?php echo htmlspecialchars($row['name']); ?>">
                 <h3><?php echo htmlspecialchars($row['name']); ?></h3>
-                <p>$<?php echo number_format($row['price'], 2); ?></p> 
+                <p>$<?php echo number_format($row['price'], 2); ?></p>
 
                 <form method="POST">
                     <input type="hidden" name="product_id" value="<?php echo $row['id']; ?>">
@@ -149,12 +163,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['checkout'])) {
                     <button type="submit" name="add_to_cart">Add to Cart</button>
                 </form>
             </div>
-        <?php 
-            }
-        } else {
-            echo "<p>No products found.</p>";
-        }
-        ?>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p>No products found.</p>
+        <?php endif; ?>
     </div>
 
     <div class="showcart">

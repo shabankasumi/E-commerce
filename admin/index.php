@@ -1,4 +1,6 @@
-<?php include("partials/header.php");
+<?php
+require_once 'auth_guard.php';
+include("partials/header.php");
 require_once 'ManageUser.php';
 require_once'ManageOrder.php';
 require_once'ManageAdmin.php';

@@ -1,5 +1,6 @@
 <?php
-require_once('ManageProduct.php');
+require_once 'auth_guard.php';
+require_once 'ManageProduct.php';
 
 $manageProduct = new ManageProduct();
 

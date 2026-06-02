@@ -1,11 +1,9 @@
 <?php
+require_once 'auth_guard.php';
 require_once 'constant.php';
 require_once 'ManageProduct.php';
 
-$db = new Database();
-$conn = $db->getConnection();
-
-$productObj = new ManageProduct($conn);
+$productObj = new ManageProduct();
 $products = $productObj->getAllProducts();
 ?>
 
@@ -52,7 +50,7 @@ $products = $productObj->getAllProducts();
                             </td>
                             <td>
                                 <a href="edit-product.php?id=<?= $product['id']; ?>" class="btn btn-edit">Edit</a>
-                                <a href="delete-products.php?id=<?= $product['id']; ?>" class="btn btn-delete" onclick="return confirm('Are you sure you want to delete this product?');">Delete</a>
+                                <a href="delete-product.php?id=<?= $product['id']; ?>" class="btn btn-delete" onclick="return confirm('Are you sure you want to delete this product?');">Delete</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

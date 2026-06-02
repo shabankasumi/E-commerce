@@ -1,4 +1,5 @@
 <?php
+require_once 'auth_guard.php';
 require_once 'ManageProduct.php';
 
 $productObj = new ManageProduct();
@@ -21,8 +22,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $image = $product['image']; 
 
     if (!empty($_FILES['image']['name'])) {
-        $image = time() . "_" . basename($_FILES['image']['name']); // Unique filename
-        $imagePath = "../images/" . $image;
+        $image = time() . "_" . basename($_FILES['image']['name']);
+        $imagePath = "uploads/" . $image;
 
         if (!move_uploaded_file($_FILES['image']['tmp_name'], $imagePath)) {
             die("Error uploading image.");
@@ -69,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <label>Image:</label>
                 <input type="file" name="image">
                 <p>Current Image:</p>
-                <img src="../images/<?= htmlspecialchars($product['image']) ?>" width="100" alt="Product Image">
+                <img src="uploads/<?= htmlspecialchars($product['image']) ?>" width="100" alt="Product Image">
             </div>
             <button type="submit">Update Product</button>
         </form>

@@ -14,8 +14,7 @@ class ManageProduct {
         $query = "SELECT * FROM {$this->table}";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
-        
-        return $stmt->get_result(); 
+        return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     }
     
     public function getProductById($id) {

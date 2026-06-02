@@ -1,4 +1,5 @@
 <?php
+require_once 'auth_guard.php';
 require_once 'ManageOrder.php';
 
 $orderObj = new ManageOrder(); 

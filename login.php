@@ -34,6 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $user = mysqli_fetch_assoc($result);
 
             if (password_verify($password, $user['password'])) {
+                session_regenerate_id(true);
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['username'] = $user['username'];
                 $_SESSION['role'] = $user['role'];
@@ -54,10 +55,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $admin = mysqli_fetch_assoc($result_admin);
 
                 if (password_verify($password, $admin['password'])) {
+                    session_regenerate_id(true);
                     $_SESSION['user_id'] = $admin['id'];
                     $_SESSION['username'] = $admin['username'];
                     $_SESSION['role'] = 'admin';
-
 
                     header("Location: index.php");
                     exit();
